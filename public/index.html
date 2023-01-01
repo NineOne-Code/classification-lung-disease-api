@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Classification Lung Disease</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/images/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/images/favicons/site.webmanifest" />
+
+    <!-- plugin scripts -->
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700%7CBarlow:300,400,500,600,700,800,900%7CPT+Sans:400,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/animate.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" />
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="assets/css/vimns-icons.css" />
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+  </head>
+
+  <body>
+    <!-- /.preloader -->
+    <div class="preloader">
+      <img src="assets/images/loader.png" class="preloader__image" alt="" />
+    </div>
+    <!-- /.preloader -->
+    <div class="page-wrapper">
+      <section class="banner-one">
+        <img
+          src="assets/images/shapes/banner-bg-shape-1-1.png"
+          alt=""
+          class="banner-one__moc"
+        />
+        <div class="container">
+          <div
+            class="banner-one__video wow fadeInUp"
+            data-wow-animation-duration="1500ms"
+          >
+            {% if data %}
+                <img src="{{ url_for('static', filename=data['image']) }}" width="639" height="639" style="filter: invert(1) drop-shadow(2px 4px 6px black) sepia(1);" />
+            {% else %}
+                <img src="assets/images/resources/video-1-1.jpg" alt="" />
+            {% endif %}
+            <!-- class video-popup  -->
+            <a
+              href="https://github.com/NineOne-Code"
+              target="_blank"
+              class="banner-one__video-btn"
+              ><img src="https://github.com/fluidicon.png" width="150" height="150"></img
+            ></a>
+          </div>
+          <!-- /.banner-one__video -->
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="banner-one__content">
+                <h3>
+                  Classification <br />
+                  Lung Disease using <span>MobileNetV3</span> Architecture
+                </h3>
+                <p>Upload your Xray image in here</p>
+                <form method=post enctype=multipart/form-data>
+                    <input class="input" title="Upload your Xray image in here" accept=".jpg,.jpeg,.png" type=file name=file placeholder="Upload your Xray image in here&hellip;"><input type=submit class="thm-btn banner-one__btn"
+                     value="Detect Disease?">
+                </form>
+                <!-- /.thm-btn banner-one__btn -->
+                <p>
+								{% with messages = get_flashed_messages() %}
+								  {% if messages %}
+									<ul>
+									{% for message in messages %}
+									  <li>{{ message }}</li>
+									{% endfor %}
+									</ul>
+								  {% endif %}
+								{% endwith %}
+                                {% if data %}
+									<ul>
+									{% for prob in data['probability'] %}
+									  <li>{{ prob }}: {{ data['probability'][prob] }}%</li>
+									{% endfor %}
+									</ul>
+								  {% endif %}
+							</p>
+              </div>
+              <!-- /.banner-one__content -->
+            </div>
+            <!-- /.col-lg-6 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- /.banner-one -->
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/TweenMax.min.js"></script>
+    <script src="assets/js/wow.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="assets/js/isotope.js"></script>
+
+    <!-- template scripts -->
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/testimonials-owl.carousel.config.js"></script>
+  </body>
+</html>

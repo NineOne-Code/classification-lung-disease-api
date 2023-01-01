@@ -1,13 +1,17 @@
 import os
 
-from flask import Flask, jsonify, request
+import cv2
+import numpy as np
+from flask import Flask, flash, jsonify, redirect, render_template, request
 from werkzeug.utils import secure_filename
 
 from predict import predict
 
-app = Flask(__name__)
-
-app.config['UPLOAD_FOLDER'] = 'temp'
+app = Flask(__name__,static_url_path='/assets',
+            static_folder='./public/assets', 
+            template_folder='./public')
+app.config['SECRET_KEY']='secretkey'
+app.config['UPLOAD_FOLDER'] = 'public/assets/temp'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -19,11 +23,41 @@ def allowed_file(filename):
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method == 'POST':
-        return postPredict()
+        return post()
     else:
-        return 'Hi!'
+        return render_template('index.html')
+        # return 'Welcome to My Classification Lung Disease API!!!'
+@app.route('/api/predict', methods=['POST'])
+def apiPredict():
+    return postPredict()
 
 
+def post():
+    # check if the post request has the file part
+    if 'file' not in request.files: 
+        flash('No file part in the request')
+        return redirect(request.url)
+    file = request.files['file']
+    if file.filename == '':
+        flash('No file selected for uploading')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(path)
+        print('path: ', path)
+        pred = predict(path)
+        probability = {pred[0][i]: pred[1][i] for i in range(0, len(pred[0]))}
+        resp = {
+            'image' : 'temp/'+filename, 
+            'output': pred[0][0],
+            'probability': probability,
+            }
+        return render_template('index.html', data=resp)
+    else:
+        flash('Allowed file types are png, jpg, jpeg')
+        return redirect(request.url)
+    
 def postPredict():
     # check if the post request has the file part
     if 'file' not in request.files:        

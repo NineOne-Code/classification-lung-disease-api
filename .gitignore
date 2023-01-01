@@ -128,6 +128,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-templates/images/*.png
+temp
+*/temp
 model/*.h5
 *.h5
