@@ -6,10 +6,30 @@ The CNN is able to classify lung diseases into four different classes: normal, t
 
 Once the model was trained, I implemented it as a web application using Flask, a lightweight Python web framework. Flask made it easy to build and deploy the application, and offered a range of tools and resources for creating dynamic and interactive web applications. To implement my project, I first installed Flask and any other dependencies that my application required. I used a requirements.txt file to specify the packages and versions that my application needed, and used [pip](https://pip.pypa.io/en/stable/), the Python package manager, to install these packages automatically.
 
+to install library:
+
 ```bash
 pip install -r requirements.txt
+```
+
+to generate library:
+
+```bash
+pip install -t lib -r requirements.txt
 ```
 
 For the frontend of the application, I used Flutter, a mobile app development framework. Flutter allowed me to create a user-friendly interface for interacting with the model, and made it easy to build a cross-platform application that could be used on both Android and iOS devices.
 
 Overall, the combination of MobileNetV3, Kaggle, Google Colab, Flask, and Flutter was key to the success of my project, and allowed me to develop a high-performing and user-friendly application for the classification of lung diseases.
+
+For deployment you can write code like this:
+
+```bash
+gunicorn app:app
+```
+
+OR
+
+```bash
+gunicorn app:app -b localhost:5000 &
+```

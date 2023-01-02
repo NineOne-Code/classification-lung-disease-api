@@ -47,6 +47,11 @@ def post():
         file.save(path)
         print('path: ', path)
         pred = predict(path)
+        
+        file = cv2.imread(path)
+        file = cv2.cvtColor(file, cv2.COLOR_BGR2GRAY)
+        cv2.imwrite(path,file)
+        
         probability = {pred[0][i]: pred[1][i] for i in range(0, len(pred[0]))}
         resp = {
             'image' : 'temp/'+filename, 
