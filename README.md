@@ -4,6 +4,16 @@ This is my final college project, I have developed a convolutional neural networ
 
 The CNN is able to classify lung diseases into four different classes: normal, tuberculosis, pneumonia, and COVID-19. To train the model, I have used a large dataset of Xray images of the lungs, which was obtained from the Kaggle platform. The training process was performed on [Google Colab](https://colab.research.google.com/drive/1LWosgRLUPnHR-HXjygYE_gq1Gl7sQusd?usp=sharing), a cloud-based platform for machine learning and data science, which provided access to powerful GPUs and TPUs for fast training and inference.
 
+```bash
+python3 -m venv myenv
+```
+
+then:
+
+```bash
+. myenv/bin/activate
+```
+
 Once the model was trained, I implemented it as a web application using Flask, a lightweight Python web framework. Flask made it easy to build and deploy the application, and offered a range of tools and resources for creating dynamic and interactive web applications. To implement my project, I first installed Flask and any other dependencies that my application required. I used a requirements.txt file to specify the packages and versions that my application needed, and used [pip](https://pip.pypa.io/en/stable/), the Python package manager, to install these packages automatically.
 
 to install library:
@@ -12,7 +22,7 @@ to install library:
 pip install -r requirements.txt
 ```
 
-to generate library:
+OR
 
 ```bash
 pip install -t lib -r requirements.txt
