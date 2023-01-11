@@ -41,5 +41,9 @@ gunicorn app:app
 OR
 
 ```bash
-gunicorn app:app -b localhost:5000 &
+gunicorn app:app -b localhost:5000
+```
+
+```bash
+gunicorn --bind 0.0.0.0:5000 wsgi:app
 ```
