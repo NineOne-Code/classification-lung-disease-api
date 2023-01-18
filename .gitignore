@@ -130,5 +130,5 @@ dmypy.json
 .pyre/
 temp
 */temp
-model/*.h5
-*.h5
+# model/*.h5
+# *.h5
