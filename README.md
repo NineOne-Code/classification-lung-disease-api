@@ -1,6 +1,8 @@
 # Lung Disease Classification Using MobileNetV3 Architecture
 
-<!-- GitAds-Verify: 767WUJE2K13BT1D9OR3J6IUP5X2BC1R5 -->
+## GitAds Sponsored
+
+[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=nineone-code/classification-lung-disease-api@github)](https://gitads.dev/v1/ad-track?source=nineone-code/classification-lung-disease-api@github)
 
 This is my final college project, I have developed a convolutional neural network (CNN) for the classification of lung diseases. The CNN is based on the MobileNetV3 architecture, which has been modified and fine-tuned for this particular task.
 
