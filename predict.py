@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import tensorflow as tf
 from keras.models import load_model
 from keras.optimizers import Adam
 from keras.utils import img_to_array
@@ -14,16 +15,11 @@ labels_2 = ["nonxray", "xray"]
 def predict(path):
     model_2 = load_model(file_model_2, compile=False)
     model = load_model(file_model, compile=False)
-    # model.compile(
-    #     loss="categorical_crossentropy",
-    #     optimizer=Adam(learning_rate=0.00001),
-    # )
     data = np.zeros((1, 224, 224, 3))
     img = cv2.imread(path)
     img = cv2.resize(img, (224, 224))
     pil_img = Image.fromarray(img)
     data[0] += img_to_array(pil_img)
-    # data/=255.0
     y_pred = model_2.predict(data)
 
     dict_result_1 = {}
@@ -38,7 +34,6 @@ def predict(path):
     for i in range(2):
         prob_result.append((prob[i] * 100).round(2))
         class_result.append(dict_result_1[prob[i]])
-    print("test masok!" + str(class_result) + str(prob_result) + str(y_pred[0][0]))
     if class_result[0] == "nonxray" or y_pred[0][0] >= 0.1:
         class_result = labels_2
         return class_result, prob_result, y_pred

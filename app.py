@@ -5,6 +5,5 @@ __version__ = "1"
 
 from route import app
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()
-    
